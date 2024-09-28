@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Register</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+          <h1>Add Details</h1><br>
+    <form action="/add" method="POST">
+
+    <!-- Unique ID -->
+    <label for="Unique_Id">Unique ID :</label>
+    <input type="text" id="Unique_Id" name="Unique_Id" required><br>
+
+    <!-- Service No -->
+    <label for="Service_No">Service No :</label>
+    <input type="text" id="Service_No" name="Service_No" required><br>
+
+    <!-- Phone Number -->
+    <label for="Rank">Rank :</label>
+    <input type="text" id="phn_no" name="Rank" required><br>
+
+    <!-- Name -->
+    <label for="Name">Name :</label>
+    <input type="text" id="Name" name="Name" required><br>
+
+    <!-- Relation -->
+    <label for="Relation">Relation :</label>
+    <input type="text" id="Relation" name="Relation" required><br>
+
+    <!-- Type Of Schership -->
+    <label for="Type_Of_Schership">Type Of Schership :</label>
+    <textarea id="Type_Of_Schership" name="Type_Of_Schership" rows="4" required></textarea><br>
+
+    <!--Amount Paid  -->
+    <label for="Amount_Paid ">Amount Paid :</label>
+    <input type="text" id="Amount_Paid " name="Amount_Paid" required><br>
+
+    <!--Date Of Paid -->
+    <label for="Date_Of_Paid">Date Of Paid :</label>
+    <input type="date" id="Date_Of_Paid" name="date" required><br>
+    
+    <!--Pv No -->
+    <label for="Pv_No">Pv No :</label>
+    <input type="text" id="Pv_No" name="Pv_No" required><br>
+    
+    <!-- Submit Button -->
+    <button type="submit">Add</button>
+    <a href="/lifts" class="button">View All</a>
+  </form>
+
+  </div>
+</body>
+</html>

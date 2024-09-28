@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users Informations</title>
+  <link rel="stylesheet" href="/stylelifts.css">
+  <script>
+    function searchTable() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const tableRows = document.querySelectorAll("tbody tr");
+
+      tableRows.forEach(row => {
+        const cells = row.querySelectorAll("td");
+        let match = Array.from(cells).some(cell => 
+          cell.textContent.toLowerCase().includes(input)
+        );
+
+        row.style.display = match ? "" : "none";
+      });
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    function deleteRow(button) {
+      const row = button.closest('tr');
+      const rowIndex = row.rowIndex; // Get the index of the row
+
+      // Here you would typically make an AJAX call to delete from the database
+      // Example:
+      // fetch('/delete', {
+      //   method: 'POST',
+      //   body: JSON.stringify({ index: rowIndex }),
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   }
+      // }).then(response => {
+      //   if (response.ok) {
+      //     row.parentNode.removeChild(row);
+      //   }
+      // });
+
+      // For now, just remove the row
+      row.parentNode.removeChild(row);
+    }
+
+    function editRow(button) {
+      const row = button.closest('tr');
+      const editForm = document.getElementById('editForm');
+
+      // Populate the form
+      editForm.name.value = row.cells[1].innerText;
+      editForm.phoneNo.value = row.cells[2].innerText;
+      editForm.rollNo.value = row.cells[3].innerText;
+      editForm.branchSection.value = row.cells[4].innerText;
+      editForm.bookDetails.value = row.cells[5].innerText;
+
+      // Show the form (consider using a modal)
+      editForm.style.display = 'block';
+    }
+  </script>
+</head>
+<body>
+  <header>
+   
+    <div class="container1">
+      <h2>AFFWA SCHOLARSHIPS/GRANTS</h2>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#">Administrator</a></li>
+          <button class="button" onclick="goBack()">LOGOUT</button>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <br>
+  <footer>
+    <div class="container2">
+      <h4>Scholership Record List</h4>
+      <nav>
+        <ul class="nav-links">
+          <a href="/lifts"><button class="buttongreen">Add</button></a>
+          <a href="/edit"><button class="buttonorg">Edit</button></a>
+          <a href="/delete"><button class="buttonsky">Delete</button></a>
+          <a href="/defaulters"><button class="button">Print</button></a>
+          <a href="/defaulters"><button class="button">Assing Pv Print</button></a>
+        </ul>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  <br>
+  <ul class="containers">
+    <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchTable()">
+    </ul>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Unique ID</th>
+          <th>Service No</th>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Relation</th>
+          <th>Type Of Scholarship</th>
+          <th>Amount Paid</th>
+          <th>Date Of Payment</th>
+          <th>Pv No</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% lifts.forEach(lift => { %>
+          <tr>
+            <td><%= lift.Unique_Id %></td>
+            <td><%= lift.Service_No %></td>
+            <td><%= lift.Rank %></td>
+            <td><%= lift.Name %></td>
+            <td><%= lift.Relation %></td>
+            <td><%= lift.Type_Of_Scholarship %></td>
+            <td><%= lift.Amount_Paid %></td>
+            <td><%= lift.Date_Of_Payment %></td>
+            <td><%= lift.Pv_No %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+  <button class="button" onclick="goBack()">Back</button>
+
+  <!-- Edit Form (modal) -->
+  <div id="editForm" style="display:none;">
+    <h3>Edit User Information</h3>
+    <form>
+      <input type="text" name="name" placeholder="Name">
+      <input type="text" name="phoneNo" placeholder="Phone No">
+      <input type="text" name="rollNo" placeholder="Roll No">
+      <input type="text" name="branchSection" placeholder="Branch & Section">
+      <input type="text" name="bookDetails" placeholder="Book Details">
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
+</body>
+</html>
